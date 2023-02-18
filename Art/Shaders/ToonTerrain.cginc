@@ -71,17 +71,20 @@ void SplatmapMix(Input IN, out half4 splat_control, out half weight, out fixed4 
 
 	splat_control = SplitMap(splat_control);
 
-	float2 uvSplat0 = TRANSFORM_TEX(IN.tc_Control.xy * _Splat0_ST.xy + _Splat0_ST.zw, _Splat0);
-	float2 uvSplat1 = TRANSFORM_TEX(IN.tc_Control.xy * _Splat1_ST.xy + _Splat1_ST.zw, _Splat1);
-	float2 uvSplat2 = TRANSFORM_TEX(IN.tc_Control.xy * _Splat2_ST.xy + _Splat2_ST.zw, _Splat2);
-	float2 uvSplat3 = TRANSFORM_TEX(IN.tc_Control.xy * _Splat3_ST.xy + _Splat3_ST.zw, _Splat3);
+	//float2 uvSplat0 = TRANSFORM_TEX(IN.tc_Control.xy * _Splat0_ST.xy + _Splat0_ST.zw, _Splat0);
+	//float2 uvSplat1 = TRANSFORM_TEX(IN.tc_Control.xy * _Splat1_ST.xy + _Splat1_ST.zw, _Splat1);
+	//float2 uvSplat2 = TRANSFORM_TEX(IN.tc_Control.xy * _Splat2_ST.xy + _Splat2_ST.zw, _Splat2);
+	//float2 uvSplat3 = TRANSFORM_TEX(IN.tc_Control.xy * _Splat3_ST.xy + _Splat3_ST.zw, _Splat3);
+
+	// world pos uv from _Splat0_ST
+	float2 ty = IN.worldPos.zx * _Splat0_ST.x;
 
 	mixedDiffuse = 0.0f;
 
-	mixedDiffuse += splat_control.r * tex2D(_Splat0, uvSplat0);
-	mixedDiffuse += splat_control.g * tex2D(_Splat1, uvSplat1);
-	mixedDiffuse += splat_control.b * tex2D(_Splat2, uvSplat2);
-	mixedDiffuse += splat_control.a * tex2D(_Splat3, uvSplat3);
+	mixedDiffuse += splat_control.r * tex2D(_Splat0, ty);
+	mixedDiffuse += splat_control.g * tex2D(_Splat1, ty);
+	mixedDiffuse += splat_control.b * tex2D(_Splat2, ty);
+	mixedDiffuse += splat_control.a * tex2D(_Splat3, ty);
 
 }
 

@@ -2,7 +2,7 @@
 
 Shader "Custom/Terrain/ToonTerrain" {
     Properties {
-        [HideInInspector] _Control ("Control (RGBA)", 2D) = "red" {}
+        _Control ("Control (RGBA)", 2D) = "red" {}
         _Splat3 ("Layer 3 (A)", 2D) = "white" {}
         _Splat2 ("Layer 2 (B)", 2D) = "white" {}
         _Splat1 ("Layer 1 (G)", 2D) = "white" {}
