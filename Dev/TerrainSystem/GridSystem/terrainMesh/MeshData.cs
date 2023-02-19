@@ -517,7 +517,7 @@ public class MeshData
         }
 
         /*1001*/
-        else if (weightCode[0] == weightCode[3] && weightCode[1] == weightCode[2] && weightCode[0] > weightCode[1])
+        else if (weightCode[0] == weightCode[3] && weightCode[3] != weightCode[1] && weightCode[0] != weightCode[1])
         {
             Vector3 v00 = new Vector3(x * m_gridSize, weightCode[0], y * m_gridSize);
             Vector3 v01 = new Vector3((x + weight01) * m_gridSize, weightCode[0], y * m_gridSize);
@@ -564,13 +564,13 @@ public class MeshData
             uvs.Add(new Vector2(1, 0.5f));
             uvs.Add(new Vector2(0, 1));
             triangles.Add(vertexCount + 0);
-            triangles.Add(vertexCount + 2);
             triangles.Add(vertexCount + 1);
+            triangles.Add(vertexCount + 2);
             vertexCount += 3;
 
-            Vector3 v09 = new Vector3(x * m_gridSize, weightCode[1], (y + weight02) * m_gridSize);
-            Vector3 v10 = new Vector3(x * m_gridSize, weightCode[1], (y + 1) * m_gridSize);
-            Vector3 v11 = new Vector3((x + weight23) * m_gridSize, weightCode[1], (y + 1) * m_gridSize);
+            Vector3 v09 = new Vector3(x * m_gridSize, weightCode[2], (y + weight02) * m_gridSize);
+            Vector3 v10 = new Vector3(x * m_gridSize, weightCode[2], (y + 1) * m_gridSize);
+            Vector3 v11 = new Vector3((x + weight23) * m_gridSize, weightCode[2], (y + 1) * m_gridSize);
             vertices.Add(v09);
             vertices.Add(v10);
             vertices.Add(v11);
@@ -578,13 +578,56 @@ public class MeshData
             uvs.Add(new Vector2(0, 1));
             uvs.Add(new Vector2(0.5f, 1));
             triangles.Add(vertexCount + 0);
+            triangles.Add(vertexCount + 1);
+            triangles.Add(vertexCount + 2);
+            vertexCount += 3;
+
+            // cliff
+            Vector3 v12 = new Vector3((x + weight01) * m_gridSize, weightCode[1], y * m_gridSize);
+            Vector3 v13 = new Vector3((x + 1) * m_gridSize, weightCode[1], (y + weight13) * m_gridSize);
+            Vector3 v14 = new Vector3((x + weight01) * m_gridSize, weightCode[0], y * m_gridSize);
+            Vector3 v15 = new Vector3((x + 1) * m_gridSize, weightCode[0], (y + weight13) * m_gridSize);
+            vertices.Add(v12);
+            vertices.Add(v13);
+            vertices.Add(v14);
+            vertices.Add(v15);
+            uvs.Add(new Vector2(0, 0.5f));
+            uvs.Add(new Vector2(1, 0.5f));
+            uvs.Add(new Vector2(0.5f, 1));
+            uvs.Add(new Vector2(1, 1));
+            triangles.Add(vertexCount + 0);
             triangles.Add(vertexCount + 2);
             triangles.Add(vertexCount + 1);
-            vertexCount += 3;
+
+            triangles.Add(vertexCount + 1);
+            triangles.Add(vertexCount + 2);
+            triangles.Add(vertexCount + 3);
+            vertexCount += 4;
+
+            Vector3 v16 = new Vector3(x * m_gridSize, weightCode[2], (y + weight02) * m_gridSize);
+            Vector3 v17 = new Vector3((x + weight23) * m_gridSize, weightCode[2], (y + 1) * m_gridSize);
+            Vector3 v18 = new Vector3(x * m_gridSize, weightCode[0], (y + weight02) * m_gridSize);
+            Vector3 v19 = new Vector3((x + weight23) * m_gridSize, weightCode[0], (y + 1) * m_gridSize);
+            vertices.Add(v16);
+            vertices.Add(v17);
+            vertices.Add(v18);
+            vertices.Add(v19);
+            uvs.Add(new Vector2(0, 0.5f));
+            uvs.Add(new Vector2(1, 0.5f));
+            uvs.Add(new Vector2(0.5f, 1));
+            uvs.Add(new Vector2(1, 1));
+            triangles.Add(vertexCount + 0);
+            triangles.Add(vertexCount + 1);
+            triangles.Add(vertexCount + 2);
+
+            triangles.Add(vertexCount + 1);
+            triangles.Add(vertexCount + 3);
+            triangles.Add(vertexCount + 2);
+            vertexCount += 4;
         }
 
         /*0110*/
-        else if (weightCode[0] == weightCode[3] && weightCode[1] == weightCode[2] && weightCode[0] < weightCode[1])
+        else if (weightCode[1] == weightCode[2] && weightCode[3] != weightCode[1] && weightCode[0] != weightCode[1])
         {
             Vector3 v00 = new Vector3((x + weight01) * m_gridSize, weightCode[1], y * m_gridSize);
             Vector3 v01 = new Vector3((x + 1) * m_gridSize, weightCode[1], y * m_gridSize);
@@ -635,9 +678,9 @@ public class MeshData
             triangles.Add(vertexCount + 1);
             vertexCount += 3;
 
-            Vector3 v09 = new Vector3((x + 1) * m_gridSize, weightCode[0], (y + weight13) * m_gridSize);
-            Vector3 v10 = new Vector3((x + 1) * m_gridSize, weightCode[0], (y + 1) * m_gridSize);
-            Vector3 v11 = new Vector3((x + weight23) * m_gridSize, weightCode[0], (y + 1) * m_gridSize);
+            Vector3 v09 = new Vector3((x + 1) * m_gridSize, weightCode[3], (y + weight13) * m_gridSize);
+            Vector3 v10 = new Vector3((x + 1) * m_gridSize, weightCode[3], (y + 1) * m_gridSize);
+            Vector3 v11 = new Vector3((x + weight23) * m_gridSize, weightCode[3], (y + 1) * m_gridSize);
             vertices.Add(v09);
             vertices.Add(v10);
             vertices.Add(v11);
@@ -648,16 +691,62 @@ public class MeshData
             triangles.Add(vertexCount + 2);
             triangles.Add(vertexCount + 1);
             vertexCount += 3;
+
+            // cliff
+            Vector3 v12 = new Vector3((x + weight01) * m_gridSize, weightCode[1], y * m_gridSize);
+            Vector3 v13 = new Vector3(x * m_gridSize, weightCode[1], (y + weight02) * m_gridSize);
+            Vector3 v14 = new Vector3((x + weight01) * m_gridSize, weightCode[0], y * m_gridSize);
+            Vector3 v15 = new Vector3(x * m_gridSize, weightCode[0], (y + weight02) * m_gridSize);
+            vertices.Add(v12);
+            vertices.Add(v13);
+            vertices.Add(v14);
+            vertices.Add(v15);
+            uvs.Add(new Vector2(0, 0.5f));
+            uvs.Add(new Vector2(1, 0.5f));
+            uvs.Add(new Vector2(0.5f, 1));
+            uvs.Add(new Vector2(1, 1));
+            triangles.Add(vertexCount + 0);
+            triangles.Add(vertexCount + 2);
+            triangles.Add(vertexCount + 1);
+
+            triangles.Add(vertexCount + 1);
+            triangles.Add(vertexCount + 2);
+            triangles.Add(vertexCount + 3);
+            vertexCount += 4;
+
+            Vector3 v16 = new Vector3((x + 1) * m_gridSize, weightCode[1], (y + weight13) * m_gridSize);
+            Vector3 v17 = new Vector3((x + weight23) * m_gridSize, weightCode[1], (y + 1) * m_gridSize);
+            Vector3 v18 = new Vector3((x + 1) * m_gridSize, weightCode[3], (y + weight13) * m_gridSize);
+            Vector3 v19 = new Vector3((x + weight23) * m_gridSize, weightCode[3], (y + 1) * m_gridSize);
+            vertices.Add(v16);
+            vertices.Add(v17);
+            vertices.Add(v18);
+            vertices.Add(v19);
+            uvs.Add(new Vector2(0, 0.5f));
+            uvs.Add(new Vector2(1, 0.5f));
+            uvs.Add(new Vector2(0.5f, 1));
+            uvs.Add(new Vector2(1, 1));
+            triangles.Add(vertexCount + 0);
+            triangles.Add(vertexCount + 1);
+            triangles.Add(vertexCount + 2);
+
+            triangles.Add(vertexCount + 1);
+            triangles.Add(vertexCount + 3);
+            triangles.Add(vertexCount + 2);
+            vertexCount += 4;
         }
 
-        /*
-        110x
+
+        /*110x */
         else if (weightCode[0] == weightCode[1] && weightCode[0] != weightCode[2] && weightCode[0] != weightCode[3] && weightCode[2] != weightCode[3])
         {
-            Vector3 v00 = new Vector3(x * m_gridSize, weightCode[0], y * m_gridSize);
-            Vector3 v01 = new Vector3((x + 1) * m_gridSize, weightCode[0], y * m_gridSize);
-            Vector3 v02 = new Vector3(x * m_gridSize, weightCode[0], (y + 0.5f) * m_gridSize);
-            Vector3 v03 = new Vector3((x + 1) * m_gridSize, weightCode[0], (y + 0.5f) * m_gridSize);
+            List<float> weightArray = new List<float> { weightCode[0], weightCode[2], weightCode[3] };
+            weightArray.Sort();
+            float lowest = weightArray[0];
+            Vector3 v00 = new Vector3(x * m_gridSize, lowest, y * m_gridSize);
+            Vector3 v01 = new Vector3((x + 1) * m_gridSize, lowest, y * m_gridSize);
+            Vector3 v02 = new Vector3(x * m_gridSize, lowest, (y + 1) * m_gridSize);
+            Vector3 v03 = new Vector3((x + 1) * m_gridSize, lowest, (y + 1) * m_gridSize);
             vertices.Add(v00);
             vertices.Add(v01);
             vertices.Add(v02);
@@ -674,49 +763,12 @@ public class MeshData
             triangles.Add(vertexCount + 2);
             triangles.Add(vertexCount + 3);
             vertexCount += 4;
-
-            if(weightCode[2] < weightCode[3] && weightCode[2] < weightCode[0])
+            // 0 lowest, 3 highest
+            if (weightCode[0] < weightCode[2] && weightCode[2] < weightCode[3])
             {
-                Vector3 v04 = new Vector3(x * m_gridSize, weightCode[2], (y + 0.5f) * m_gridSize);
-                Vector3 v05 = new Vector3(x * m_gridSize, weightCode[2], (y + 1) * m_gridSize);
-                Vector3 v06 = new Vector3((x + 0.5f) * m_gridSize, weightCode[2], (y + 1) * m_gridSize);
-                vertices.Add(v04);
-                vertices.Add(v05);
-                vertices.Add(v06);
-                uvs.Add(new Vector2(0, 0));
-                uvs.Add(new Vector2(0.5f, 0));
-                uvs.Add(new Vector2(0, 1));
-                triangles.Add(vertexCount + 0);
-                triangles.Add(vertexCount + 1);
-                triangles.Add(vertexCount + 2);
-                vertexCount += 3;
-
-                Vector3 v07 = new Vector3(x * m_gridSize, weightCode[3], (y + 0.5f) * m_gridSize);
-                Vector3 v08 = new Vector3((x + 0.5f) * m_gridSize, weightCode[3], (y + 1) * m_gridSize);
-                Vector3 v09 = new Vector3((x + 1) * m_gridSize, weightCode[3], (y + 1) * m_gridSize);
-                Vector3 v10 = new Vector3((x + 1) * m_gridSize, weightCode[3], (y + 0.5f) * m_gridSize);
-                vertices.Add(v07);
-                vertices.Add(v08);
-                vertices.Add(v09);
-                vertices.Add(v10);
-                uvs.Add(new Vector2(0, 0.5f));
-                uvs.Add(new Vector2(1, 0.5f));
-                uvs.Add(new Vector2(0.5f, 1));
-                uvs.Add(new Vector2(1, 1));
-                triangles.Add(vertexCount + 0);
-                triangles.Add(vertexCount + 1);
-                triangles.Add(vertexCount + 3);
-
-                triangles.Add(vertexCount + 1);
-                triangles.Add(vertexCount + 2);
-                triangles.Add(vertexCount + 3);
-                vertexCount += 4;
-            }
-            else
-            {
-                Vector3 v04 = new Vector3((x + 0.5f) * m_gridSize, weightCode[3], (y + 1) * m_gridSize);
+                Vector3 v04 = new Vector3((x + weight23) * m_gridSize, weightCode[3], (y + 1) * m_gridSize);
                 Vector3 v05 = new Vector3((x + 1) * m_gridSize, weightCode[3], (y + 1) * m_gridSize);
-                Vector3 v06 = new Vector3((x + 1) * m_gridSize, weightCode[3], (y + 0.5f) * m_gridSize);
+                Vector3 v06 = new Vector3((x + 1) * m_gridSize, weightCode[3], (y + weight13) * m_gridSize);
                 vertices.Add(v04);
                 vertices.Add(v05);
                 vertices.Add(v06);
@@ -728,10 +780,11 @@ public class MeshData
                 triangles.Add(vertexCount + 2);
                 vertexCount += 3;
 
-                Vector3 v07 = new Vector3(x * m_gridSize, weightCode[2], (y + 0.5f) * m_gridSize);
-                Vector3 v08 = new Vector3((x + 1) * m_gridSize, weightCode[2], (y + 0.5f) * m_gridSize);
+
+                Vector3 v07 = new Vector3(x * m_gridSize, weightCode[2], (y + weight02) * m_gridSize);
+                Vector3 v08 = new Vector3((x + 1) * m_gridSize, weightCode[2], (y + weight13) * m_gridSize);
                 Vector3 v09 = new Vector3(x * m_gridSize, weightCode[2], (y + 1) * m_gridSize);
-                Vector3 v10 = new Vector3((x + 0.5f) * m_gridSize, weightCode[2], (y + 1) * m_gridSize);
+                Vector3 v10 = new Vector3((x + 1) * m_gridSize, weightCode[2], (y + 1) * m_gridSize);
                 vertices.Add(v07);
                 vertices.Add(v08);
                 vertices.Add(v09);
@@ -748,16 +801,144 @@ public class MeshData
                 triangles.Add(vertexCount + 2);
                 triangles.Add(vertexCount + 3);
                 vertexCount += 4;
+
+                // cliff
+                Vector3 v11 = new Vector3(x * m_gridSize, weightCode[2], (y + weight02) * m_gridSize);
+                Vector3 v12 = new Vector3((x + 1) * m_gridSize, weightCode[2], (y + weight13) * m_gridSize);
+                Vector3 v13 = new Vector3(x * m_gridSize, weightCode[0], (y + weight02) * m_gridSize);
+                Vector3 v14 = new Vector3((x + 1) * m_gridSize, weightCode[0], (y + weight13) * m_gridSize);
+                vertices.Add(v11);
+                vertices.Add(v12);
+                vertices.Add(v13);
+                vertices.Add(v14);
+                uvs.Add(new Vector2(0, 0.5f));
+                uvs.Add(new Vector2(1, 0.5f));
+                uvs.Add(new Vector2(0.5f, 1));
+                uvs.Add(new Vector2(1, 1));
+                triangles.Add(vertexCount + 0);
+                triangles.Add(vertexCount + 1);
+                triangles.Add(vertexCount + 2);
+
+                triangles.Add(vertexCount + 1);
+                triangles.Add(vertexCount + 3);
+                triangles.Add(vertexCount + 2);
+                vertexCount += 4;
+
+                Vector3 v15 = new Vector3((x + weight23) * m_gridSize, weightCode[3], (y + 1) * m_gridSize);
+                Vector3 v16 = new Vector3((x + 1) * m_gridSize, weightCode[3], (y + weight13) * m_gridSize);
+                Vector3 v17 = new Vector3((x + weight23) * m_gridSize, weightCode[2], (y + 1) * m_gridSize);
+                Vector3 v18 = new Vector3((x + 1) * m_gridSize, weightCode[2], (y + weight13) * m_gridSize);
+                vertices.Add(v15);
+                vertices.Add(v16);
+                vertices.Add(v17);
+                vertices.Add(v18);
+                uvs.Add(new Vector2(0, 0.5f));
+                uvs.Add(new Vector2(1, 0.5f));
+                uvs.Add(new Vector2(0.5f, 1));
+                uvs.Add(new Vector2(1, 1));
+                triangles.Add(vertexCount + 0);
+                triangles.Add(vertexCount + 1);
+                triangles.Add(vertexCount + 2);
+
+                triangles.Add(vertexCount + 1);
+                triangles.Add(vertexCount + 3);
+                triangles.Add(vertexCount + 2);
+                vertexCount += 4;
+
             }
+            // 0 lowest, 2 highest
+            else if (weightCode[0] < weightCode[3] && weightCode[3] < weightCode[2])
+            {
+                Vector3 v04 = new Vector3(x * m_gridSize, weightCode[2], (y + weight02) * m_gridSize);
+                Vector3 v05 = new Vector3(x * m_gridSize, weightCode[2], (y + 1) * m_gridSize);
+                Vector3 v06 = new Vector3((x + weight23) * m_gridSize, weightCode[2], (y + 1) * m_gridSize);
+                vertices.Add(v04);
+                vertices.Add(v05);
+                vertices.Add(v06);
+                uvs.Add(new Vector2(0, 0));
+                uvs.Add(new Vector2(0.5f, 0));
+                uvs.Add(new Vector2(0, 1));
+                triangles.Add(vertexCount + 0);
+                triangles.Add(vertexCount + 1);
+                triangles.Add(vertexCount + 2);
+                vertexCount += 3;
+
+                Vector3 v07 = new Vector3(x * m_gridSize, weightCode[3], (y + weight02) * m_gridSize);
+                Vector3 v08 = new Vector3((x + 1) * m_gridSize, weightCode[3], (y + weight13) * m_gridSize);
+                Vector3 v09 = new Vector3(x * m_gridSize, weightCode[3], (y + 1) * m_gridSize);
+                Vector3 v10 = new Vector3((x + 1) * m_gridSize, weightCode[3], (y + 1) * m_gridSize);
+                vertices.Add(v07);
+                vertices.Add(v08);
+                vertices.Add(v09);
+                vertices.Add(v10);
+                uvs.Add(new Vector2(0, 0.5f));
+                uvs.Add(new Vector2(1, 0.5f));
+                uvs.Add(new Vector2(0.5f, 1));
+                uvs.Add(new Vector2(1, 1));
+                triangles.Add(vertexCount + 0);
+                triangles.Add(vertexCount + 2);
+                triangles.Add(vertexCount + 1);
+
+                triangles.Add(vertexCount + 1);
+                triangles.Add(vertexCount + 2);
+                triangles.Add(vertexCount + 3);
+                vertexCount += 4;
+                // cliff
+                Vector3 v11 = new Vector3(x * m_gridSize, weightCode[3], (y + weight02) * m_gridSize);
+                Vector3 v12 = new Vector3((x + 1) * m_gridSize, weightCode[3], (y + weight13) * m_gridSize);
+                Vector3 v13 = new Vector3(x * m_gridSize, weightCode[0], (y + weight02) * m_gridSize);
+                Vector3 v14 = new Vector3((x + 1) * m_gridSize, weightCode[0], (y + weight13) * m_gridSize);
+                vertices.Add(v11);
+                vertices.Add(v12);
+                vertices.Add(v13);
+                vertices.Add(v14);
+                uvs.Add(new Vector2(0, 0.5f));
+                uvs.Add(new Vector2(1, 0.5f));
+                uvs.Add(new Vector2(0.5f, 1));
+                uvs.Add(new Vector2(1, 1));
+                triangles.Add(vertexCount + 0);
+                triangles.Add(vertexCount + 1);
+                triangles.Add(vertexCount + 2);
+
+                triangles.Add(vertexCount + 2);
+                triangles.Add(vertexCount + 1);
+                triangles.Add(vertexCount + 3);
+                vertexCount += 4;
+
+                Vector3 v15 = new Vector3(x * m_gridSize, weightCode[2], (y + weight02) * m_gridSize);
+                Vector3 v16 = new Vector3((x + weight23) * m_gridSize, weightCode[2], (y + 1) * m_gridSize);
+                Vector3 v17 = new Vector3(x * m_gridSize, weightCode[3], (y + weight02) * m_gridSize);
+                Vector3 v18 = new Vector3((x + weight23) * m_gridSize, weightCode[3], (y + 1) * m_gridSize);
+                vertices.Add(v15);
+                vertices.Add(v16);
+                vertices.Add(v17);
+                vertices.Add(v18);
+                uvs.Add(new Vector2(0, 0.5f));
+                uvs.Add(new Vector2(1, 0.5f));
+                uvs.Add(new Vector2(0.5f, 1));
+                uvs.Add(new Vector2(1, 1));
+                triangles.Add(vertexCount + 0);
+                triangles.Add(vertexCount + 1);
+                triangles.Add(vertexCount + 2);
+
+                triangles.Add(vertexCount + 1);
+                triangles.Add(vertexCount + 3);
+                triangles.Add(vertexCount + 2);
+                vertexCount += 4;
+            }
+
         }
 
-        0x11 
-        else if (weightCode[2] == weightCode[3] && weightCode[0] != weightCode[2] && weightCode[1] != weightCode[2] && weightCode[0] != weightCode[1])
+        /*0x11 */
+        else if (weightCode[2] == weightCode[3] && weightCode[2] != weightCode[0] && weightCode[2] != weightCode[1] && weightCode[0] != weightCode[1])
         {
-            Vector3 v00 = new Vector3(x * m_gridSize, weightCode[2], (y + 0.5f) * m_gridSize);
-            Vector3 v01 = new Vector3((x + 1) * m_gridSize, weightCode[2], (y + 0.5f) * m_gridSize);
-            Vector3 v02 = new Vector3(x * m_gridSize, weightCode[2], (y + 1) * m_gridSize);
-            Vector3 v03 = new Vector3((x + 1) * m_gridSize, weightCode[2], (y + 1) * m_gridSize);
+            List<float> weightArray = new List<float> { weightCode[0], weightCode[1], weightCode[2] };
+            weightArray.Sort();
+            float lowest = weightArray[0];
+            Vector3 v00 = new Vector3(x * m_gridSize, lowest, y * m_gridSize);
+            Vector3 v01 = new Vector3((x + 1) * m_gridSize, lowest, y * m_gridSize);
+            Vector3 v02 = new Vector3(x * m_gridSize, lowest, (y + 1) * m_gridSize);
+            Vector3 v03 = new Vector3((x + 1) * m_gridSize, lowest, (y + 1) * m_gridSize);
             vertices.Add(v00);
             vertices.Add(v01);
             vertices.Add(v02);
@@ -774,12 +955,12 @@ public class MeshData
             triangles.Add(vertexCount + 2);
             triangles.Add(vertexCount + 3);
             vertexCount += 4;
-
-            if (weightCode[2] < weightCode[3])
+            //2 lowest, 1 is highest
+            if (weightCode[2] < weightCode[0] && weightCode[0] < weightCode[1])
             {
-                Vector3 v04 = new Vector3(x * m_gridSize, weightCode[2], (y + 0.5f) * m_gridSize);
-                Vector3 v05 = new Vector3(x * m_gridSize, weightCode[2], (y + 1) * m_gridSize);
-                Vector3 v06 = new Vector3((x + 0.5f) * m_gridSize, weightCode[2], (y + 1) * m_gridSize);
+                Vector3 v04 = new Vector3((x + weight01) * m_gridSize, weightCode[1], y * m_gridSize);
+                Vector3 v05 = new Vector3((x + 1) * m_gridSize, weightCode[1], (y + weight13) * m_gridSize);
+                Vector3 v06 = new Vector3((x + 1) * m_gridSize, weightCode[1], y * m_gridSize);
                 vertices.Add(v04);
                 vertices.Add(v05);
                 vertices.Add(v06);
@@ -791,10 +972,11 @@ public class MeshData
                 triangles.Add(vertexCount + 2);
                 vertexCount += 3;
 
-                Vector3 v07 = new Vector3(x * m_gridSize, weightCode[3], (y + 0.5f) * m_gridSize);
-                Vector3 v08 = new Vector3((x + 0.5f) * m_gridSize, weightCode[3], (y + 1) * m_gridSize);
-                Vector3 v09 = new Vector3((x + 1) * m_gridSize, weightCode[3], (y + 1) * m_gridSize);
-                Vector3 v10 = new Vector3((x + 1) * m_gridSize, weightCode[3], (y + 0.5f) * m_gridSize);
+
+                Vector3 v07 = new Vector3(x * m_gridSize, weightCode[0], y * m_gridSize);
+                Vector3 v08 = new Vector3((x + 1) * m_gridSize, weightCode[0], y * m_gridSize);
+                Vector3 v09 = new Vector3(x * m_gridSize, weightCode[0], (y + weight02) * m_gridSize);
+                Vector3 v10 = new Vector3((x + 1) * m_gridSize, weightCode[0], (y + weight13) * m_gridSize);
                 vertices.Add(v07);
                 vertices.Add(v08);
                 vertices.Add(v09);
@@ -804,19 +986,63 @@ public class MeshData
                 uvs.Add(new Vector2(0.5f, 1));
                 uvs.Add(new Vector2(1, 1));
                 triangles.Add(vertexCount + 0);
+                triangles.Add(vertexCount + 2);
                 triangles.Add(vertexCount + 1);
+
+                triangles.Add(vertexCount + 1);
+                triangles.Add(vertexCount + 2);
                 triangles.Add(vertexCount + 3);
+                vertexCount += 4;
+
+                // cliff
+                Vector3 v11 = new Vector3((x + weight01) * m_gridSize, weightCode[1], y * m_gridSize);
+                Vector3 v12 = new Vector3((x + 1) * m_gridSize, weightCode[1], (y + weight13) * m_gridSize);
+                Vector3 v13 = new Vector3((x + weight01) * m_gridSize, weightCode[0], y * m_gridSize);
+                Vector3 v14 = new Vector3((x + 1) * m_gridSize, weightCode[0], (y + weight13) * m_gridSize);
+                vertices.Add(v11);
+                vertices.Add(v12);
+                vertices.Add(v13);
+                vertices.Add(v14);
+                uvs.Add(new Vector2(0, 0.5f));
+                uvs.Add(new Vector2(1, 0.5f));
+                uvs.Add(new Vector2(0.5f, 1));
+                uvs.Add(new Vector2(1, 1));
+                triangles.Add(vertexCount + 0);
+                triangles.Add(vertexCount + 2);
+                triangles.Add(vertexCount + 1);
+
+                triangles.Add(vertexCount + 1);
+                triangles.Add(vertexCount + 2);
+                triangles.Add(vertexCount + 3);
+                vertexCount += 4;
+
+                Vector3 v15 = new Vector3(x * m_gridSize, weightCode[0], (y + weight02) * m_gridSize);
+                Vector3 v16 = new Vector3((x + 1) * m_gridSize, weightCode[0], (y + weight13) * m_gridSize);
+                Vector3 v17 = new Vector3(x * m_gridSize, weightCode[2], (y + weight02) * m_gridSize);
+                Vector3 v18 = new Vector3((x + 1) * m_gridSize, weightCode[2], (y + weight13) * m_gridSize);
+                vertices.Add(v15);
+                vertices.Add(v16);
+                vertices.Add(v17);
+                vertices.Add(v18);
+                uvs.Add(new Vector2(0, 0.5f));
+                uvs.Add(new Vector2(1, 0.5f));
+                uvs.Add(new Vector2(0.5f, 1));
+                uvs.Add(new Vector2(1, 1));
+                triangles.Add(vertexCount + 0);
+                triangles.Add(vertexCount + 2);
+                triangles.Add(vertexCount + 1);
 
                 triangles.Add(vertexCount + 1);
                 triangles.Add(vertexCount + 2);
                 triangles.Add(vertexCount + 3);
                 vertexCount += 4;
             }
-            else
+            // 2 lowest, 0 is highest
+            else if (weightCode[2] < weightCode[1] && weightCode[1] < weightCode[0])
             {
-                Vector3 v04 = new Vector3((x + 0.5f) * m_gridSize, weightCode[3], (y + 1) * m_gridSize);
-                Vector3 v05 = new Vector3((x + 1) * m_gridSize, weightCode[3], (y + 1) * m_gridSize);
-                Vector3 v06 = new Vector3((x + 1) * m_gridSize, weightCode[3], (y + 0.5f) * m_gridSize);
+                Vector3 v04 = new Vector3(x * m_gridSize, weightCode[0], y * m_gridSize);
+                Vector3 v05 = new Vector3(x * m_gridSize, weightCode[0], (y + weight02) * m_gridSize);
+                Vector3 v06 = new Vector3((x + weight01) * m_gridSize, weightCode[0], y * m_gridSize);
                 vertices.Add(v04);
                 vertices.Add(v05);
                 vertices.Add(v06);
@@ -828,14 +1054,236 @@ public class MeshData
                 triangles.Add(vertexCount + 2);
                 vertexCount += 3;
 
-                Vector3 v07 = new Vector3(x * m_gridSize, weightCode[2], (y + 0.5f) * m_gridSize);
-                Vector3 v08 = new Vector3((x + 1) * m_gridSize, weightCode[2], (y + 0.5f) * m_gridSize);
-                Vector3 v09 = new Vector3(x * m_gridSize, weightCode[2], (y + 1) * m_gridSize);
-                Vector3 v10 = new Vector3((x + 0.5f) * m_gridSize, weightCode[2], (y + 1) * m_gridSize);
+
+                Vector3 v07 = new Vector3(x * m_gridSize, weightCode[1], y * m_gridSize);
+                Vector3 v08 = new Vector3((x + 1) * m_gridSize, weightCode[1], y * m_gridSize);
+                Vector3 v09 = new Vector3(x * m_gridSize, weightCode[1], (y + weight02) * m_gridSize);
+                Vector3 v10 = new Vector3((x + 1) * m_gridSize, weightCode[1], (y + weight13) * m_gridSize);
                 vertices.Add(v07);
                 vertices.Add(v08);
                 vertices.Add(v09);
                 vertices.Add(v10);
+                uvs.Add(new Vector2(0, 0.5f));
+                uvs.Add(new Vector2(1, 0.5f));
+                uvs.Add(new Vector2(0.5f, 1));
+                uvs.Add(new Vector2(1, 1));
+                triangles.Add(vertexCount + 0);
+                triangles.Add(vertexCount + 2);
+                triangles.Add(vertexCount + 1);
+
+                triangles.Add(vertexCount + 1);
+                triangles.Add(vertexCount + 2);
+                triangles.Add(vertexCount + 3);
+                vertexCount += 4;
+
+                // cliff
+                Vector3 v11 = new Vector3(x * m_gridSize, weightCode[0], (y + weight02) * m_gridSize);
+                Vector3 v12 = new Vector3((x + weight01) * m_gridSize, weightCode[0], y * m_gridSize);
+                Vector3 v13 = new Vector3(x * m_gridSize, weightCode[2], (y + weight02) * m_gridSize);
+                Vector3 v14 = new Vector3((x + weight01) * m_gridSize, weightCode[2], y * m_gridSize);
+                vertices.Add(v11);
+                vertices.Add(v12);
+                vertices.Add(v13);
+                vertices.Add(v14);
+                uvs.Add(new Vector2(0, 0.5f));
+                uvs.Add(new Vector2(1, 0.5f));
+                uvs.Add(new Vector2(0.5f, 1));
+                uvs.Add(new Vector2(1, 1));
+                triangles.Add(vertexCount + 0);
+                triangles.Add(vertexCount + 2);
+                triangles.Add(vertexCount + 1);
+
+                triangles.Add(vertexCount + 1);
+                triangles.Add(vertexCount + 2);
+                triangles.Add(vertexCount + 3);
+                vertexCount += 4;
+
+                Vector3 v15 = new Vector3(x * m_gridSize, weightCode[1], (y + weight02) * m_gridSize);
+                Vector3 v16 = new Vector3((x + 1) * m_gridSize, weightCode[1], (y + weight13) * m_gridSize);
+                Vector3 v17 = new Vector3(x * m_gridSize, weightCode[2], (y + weight02) * m_gridSize);
+                Vector3 v18 = new Vector3((x + 1) * m_gridSize, weightCode[2], (y + weight13) * m_gridSize);
+                vertices.Add(v15);
+                vertices.Add(v16);
+                vertices.Add(v17);
+                vertices.Add(v18);
+                uvs.Add(new Vector2(0, 0.5f));
+                uvs.Add(new Vector2(1, 0.5f));
+                uvs.Add(new Vector2(0.5f, 1));
+                uvs.Add(new Vector2(1, 1));
+                triangles.Add(vertexCount + 0);
+                triangles.Add(vertexCount + 2);
+                triangles.Add(vertexCount + 1);
+
+                triangles.Add(vertexCount + 1);
+                triangles.Add(vertexCount + 2);
+                triangles.Add(vertexCount + 3);
+                vertexCount += 4;
+            }
+            // 0 lowest, 2 is highest
+            else if (weightCode[0] < weightCode[1] && weightCode[1] < weightCode[2])
+            {
+                Vector3 v04 = new Vector3((x + weight01) * m_gridSize, weightCode[1], y * m_gridSize);
+                Vector3 v05 = new Vector3((x + 1) * m_gridSize, weightCode[1], y * m_gridSize);
+                Vector3 v06 = new Vector3(x * m_gridSize, weightCode[1], (y + weight02) * m_gridSize);
+                Vector3 v07 = new Vector3((x + 1) * m_gridSize, weightCode[1], (y + weight13) * m_gridSize);
+                vertices.Add(v04);
+                vertices.Add(v05);
+                vertices.Add(v06);
+                vertices.Add(v07);
+                uvs.Add(new Vector2(0, 0));
+                uvs.Add(new Vector2(0.5f, 0));
+                uvs.Add(new Vector2(0, 1));
+                uvs.Add(new Vector2(0, 1));
+                triangles.Add(vertexCount + 0);
+                triangles.Add(vertexCount + 2);
+                triangles.Add(vertexCount + 1);
+
+                triangles.Add(vertexCount + 1);
+                triangles.Add(vertexCount + 2);
+                triangles.Add(vertexCount + 3);
+                vertexCount += 4;
+
+
+                Vector3 v08 = new Vector3(x * m_gridSize, weightCode[2], (y + 1) * m_gridSize);
+                Vector3 v09 = new Vector3((x + 1) * m_gridSize, weightCode[2], (y + 1) * m_gridSize);
+                Vector3 v10 = new Vector3(x * m_gridSize, weightCode[2], (y + weight02) * m_gridSize);
+                Vector3 v11 = new Vector3((x + 1) * m_gridSize, weightCode[2], (y + weight13) * m_gridSize);
+                vertices.Add(v08);
+                vertices.Add(v09);
+                vertices.Add(v10);
+                vertices.Add(v11);
+                uvs.Add(new Vector2(0, 0.5f));
+                uvs.Add(new Vector2(1, 0.5f));
+                uvs.Add(new Vector2(0.5f, 1));
+                uvs.Add(new Vector2(1, 1));
+                triangles.Add(vertexCount + 0);
+                triangles.Add(vertexCount + 1);
+                triangles.Add(vertexCount + 2);
+
+                triangles.Add(vertexCount + 1);
+                triangles.Add(vertexCount + 3);
+                triangles.Add(vertexCount + 2);
+                vertexCount += 4;
+
+                // cliff
+                Vector3 v12 = new Vector3((x + weight01) * m_gridSize, weightCode[1], y * m_gridSize);
+                Vector3 v13 = new Vector3(x * m_gridSize, weightCode[1], (y + weight02) * m_gridSize);
+                Vector3 v14 = new Vector3((x + weight01) * m_gridSize, weightCode[0], y * m_gridSize);
+                Vector3 v15 = new Vector3(x * m_gridSize, weightCode[0], (y + weight02) * m_gridSize);
+                vertices.Add(v12);
+                vertices.Add(v13);
+                vertices.Add(v14);
+                vertices.Add(v15);
+                uvs.Add(new Vector2(0, 0.5f));
+                uvs.Add(new Vector2(1, 0.5f));
+                uvs.Add(new Vector2(0.5f, 1));
+                uvs.Add(new Vector2(1, 1));
+                triangles.Add(vertexCount + 0);
+                triangles.Add(vertexCount + 2);
+                triangles.Add(vertexCount + 1);
+
+                triangles.Add(vertexCount + 1);
+                triangles.Add(vertexCount + 2);
+                triangles.Add(vertexCount + 3);
+                vertexCount += 4;
+
+                Vector3 v16 = new Vector3(x * m_gridSize, weightCode[1], (y + weight02) * m_gridSize);
+                Vector3 v17 = new Vector3((x + 1) * m_gridSize, weightCode[1], (y + weight13) * m_gridSize);
+                Vector3 v18 = new Vector3(x * m_gridSize, weightCode[2], (y + weight02) * m_gridSize);
+                Vector3 v19 = new Vector3((x + 1) * m_gridSize, weightCode[2], (y + weight13) * m_gridSize);
+                vertices.Add(v16);
+                vertices.Add(v17);
+                vertices.Add(v18);
+                vertices.Add(v19);
+                uvs.Add(new Vector2(0, 0.5f));
+                uvs.Add(new Vector2(1, 0.5f));
+                uvs.Add(new Vector2(0.5f, 1));
+                uvs.Add(new Vector2(1, 1));
+                triangles.Add(vertexCount + 0);
+                triangles.Add(vertexCount + 2);
+                triangles.Add(vertexCount + 1);
+
+                triangles.Add(vertexCount + 1);
+                triangles.Add(vertexCount + 2);
+                triangles.Add(vertexCount + 3);
+                vertexCount += 4;
+            }
+            // 1 lowest, 2 is highest
+            else if (weightCode[1] < weightCode[0] && weightCode[0] < weightCode[2])
+            {
+                Vector3 v04 = new Vector3(x * m_gridSize, weightCode[0], y * m_gridSize);
+                Vector3 v05 = new Vector3((x + weight01) * m_gridSize, weightCode[0], y * m_gridSize);
+                Vector3 v06 = new Vector3(x * m_gridSize, weightCode[0], (y + weight02) * m_gridSize);
+                Vector3 v07 = new Vector3((x + 1) * m_gridSize, weightCode[0], (y + weight13) * m_gridSize);
+                vertices.Add(v04);
+                vertices.Add(v05);
+                vertices.Add(v06);
+                vertices.Add(v07);
+                uvs.Add(new Vector2(0, 0));
+                uvs.Add(new Vector2(0.5f, 0));
+                uvs.Add(new Vector2(0, 1));
+                uvs.Add(new Vector2(0, 1));
+                triangles.Add(vertexCount + 0);
+                triangles.Add(vertexCount + 2);
+                triangles.Add(vertexCount + 1);
+
+                triangles.Add(vertexCount + 1);
+                triangles.Add(vertexCount + 2);
+                triangles.Add(vertexCount + 3); 
+                vertexCount += 4;
+
+
+                Vector3 v08 = new Vector3(x * m_gridSize, weightCode[2], (y + 1) * m_gridSize);
+                Vector3 v09 = new Vector3((x + 1) * m_gridSize, weightCode[2], (y + 1) * m_gridSize);
+                Vector3 v10 = new Vector3(x * m_gridSize, weightCode[2], (y + weight02) * m_gridSize);
+                Vector3 v11 = new Vector3((x + 1) * m_gridSize, weightCode[2], (y + weight13) * m_gridSize);
+                vertices.Add(v08);
+                vertices.Add(v09);
+                vertices.Add(v10);
+                vertices.Add(v11);
+                uvs.Add(new Vector2(0, 0.5f));
+                uvs.Add(new Vector2(1, 0.5f));
+                uvs.Add(new Vector2(0.5f, 1));
+                uvs.Add(new Vector2(1, 1));
+                triangles.Add(vertexCount + 0);
+                triangles.Add(vertexCount + 1);
+                triangles.Add(vertexCount + 2);
+
+                triangles.Add(vertexCount + 1);
+                triangles.Add(vertexCount + 3);
+                triangles.Add(vertexCount + 2);
+                vertexCount += 4;
+
+                // cliff
+                Vector3 v12 = new Vector3((x + weight01) * m_gridSize, weightCode[1], y * m_gridSize);
+                Vector3 v13 = new Vector3((x + 1) * m_gridSize, weightCode[1], (y + weight13) * m_gridSize);
+                Vector3 v14 = new Vector3((x + weight01) * m_gridSize, weightCode[0], y * m_gridSize);
+                Vector3 v15 = new Vector3((x + 1) * m_gridSize, weightCode[0], (y + weight13) * m_gridSize);
+                vertices.Add(v12);
+                vertices.Add(v13);
+                vertices.Add(v14);
+                vertices.Add(v15);
+                uvs.Add(new Vector2(0, 0.5f));
+                uvs.Add(new Vector2(1, 0.5f));
+                uvs.Add(new Vector2(0.5f, 1));
+                uvs.Add(new Vector2(1, 1));
+                triangles.Add(vertexCount + 0);
+                triangles.Add(vertexCount + 2);
+                triangles.Add(vertexCount + 1);
+
+                triangles.Add(vertexCount + 1);
+                triangles.Add(vertexCount + 2);
+                triangles.Add(vertexCount + 3);
+                vertexCount += 4;
+
+                Vector3 v16 = new Vector3(x * m_gridSize, weightCode[1], (y + weight02) * m_gridSize);
+                Vector3 v17 = new Vector3((x + 1) * m_gridSize, weightCode[1], (y + weight13) * m_gridSize);
+                Vector3 v18 = new Vector3(x * m_gridSize, weightCode[2], (y + weight02) * m_gridSize);
+                Vector3 v19 = new Vector3((x + 1) * m_gridSize, weightCode[2], (y + weight13) * m_gridSize);
+                vertices.Add(v16);
+                vertices.Add(v17);
+                vertices.Add(v18);
+                vertices.Add(v19);
                 uvs.Add(new Vector2(0, 0.5f));
                 uvs.Add(new Vector2(1, 0.5f));
                 uvs.Add(new Vector2(0.5f, 1));
@@ -850,7 +1298,8 @@ public class MeshData
                 vertexCount += 4;
             }
         }
-    */
+
+
     }
 
     void createQuadTreeMesh(int startX, int startY, int lenX, int lenY, GridMatrix currGridMatrix)
